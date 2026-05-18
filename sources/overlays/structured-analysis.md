@@ -1,5 +1,13 @@
 # Overlay: structured-analysis
 
+## Identity
+
+Stage-based structured analysis for complex problem decomposition.
+
+## Intent
+
+Ensure methodical, traceable reasoning by separating problem understanding from solution generation.
+
 ## Rules
 
 The model MUST:
@@ -55,3 +63,37 @@ Combination of partial results into a coherent understanding.
 #### 5. Conclusion
 
 Final answer derived from structured reasoning.
+
+---
+
+## Priority
+
+MEDIUM-HIGH
+
+---
+
+## Behavioral Impact
+
+Adds explicit reasoning stages: framing → decomposition → analysis → synthesis → conclusion.
+
+---
+
+## Compatibility
+
+Compatible with:
+
+- strict-mode
+- diagnostics
+- hypothesis-driven reasoning
+
+---
+
+## Observable Effects
+
+Responses follow Problem Framing → Decomposition → Analysis → Synthesis → Conclusion pipeline.
+
+---
+
+## Summary
+
+Decompose complex problems into explicit analytical stages.

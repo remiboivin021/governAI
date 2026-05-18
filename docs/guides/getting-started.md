@@ -29,7 +29,7 @@ dist/
 
 ### 2. Définir des overlays (optionnel)
 
-`sources/overlays/<nom>.md` — comportements modulaires avec sections `## Rules`, `## Constraints`, `## Output Behavior`.
+`sources/overlays/<nom>.md` — comportements modulaires avec sections `## Identity`, `## Intent`, `## Rules`, `## Constraints`, `## Output Behavior`, `## Priority`, et sections optionnelles.
 
 ### 3. Enregistrer dans le catalogue
 

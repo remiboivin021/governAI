@@ -15,9 +15,16 @@ Plusieurs overlays peuvent être empilés (appliqués dans l'ordre du catalogue)
 | Section | Requise | Utilisée par le compilateur | Description |
 |---|---|---|---|
 | `# Overlay: <nom>` | oui | — | Titre |
+| `## Identity` | oui | — | Ce que fait l'overlay |
+| `## Intent` | oui | — | Pourquoi il existe |
 | `## Rules` | oui | ✅ Extraites comme règles | Comportements que le modèle DOIT suivre |
 | `## Constraints` | oui | ✅ Extraites comme contraintes | Comportements que le modèle NE DOIT PAS faire |
 | `## Output Behavior` | oui | ✅ Extrait comme format de sortie | Structure de réponse attendue |
+| `## Priority` | oui | ❌ Non utilisée | Prévue pour futur système de conflit |
+| `## Behavioral Impact` | non | — | Ce que l'overlay modifie |
+| `## Compatibility` | non | — | Overlays compatibles |
+| `## Observable Effects` | non | — | Comment vérifier l'activation |
+| `## Summary` | non | — | Référence rapide |
 
 ## Fonctionnement de la compilation
 

@@ -1,5 +1,13 @@
 # Overlay: hypothesis-driven
 
+## Identity
+
+Multi-hypothesis reasoning for ambiguous problems with incomplete evidence.
+
+## Intent
+
+Prevent premature convergence by maintaining and evaluating multiple competing explanations.
+
 ## Rules
 
 The model MUST:
@@ -52,3 +60,37 @@ Comparison between hypotheses based on evidence.
 #### Selection
 
 Most likely hypothesis with justification.
+
+---
+
+## Priority
+
+HIGH
+
+---
+
+## Behavioral Impact
+
+Replaces single-conclusion reasoning with hypothesis set management, probabilistic evaluation, and evidence-based selection.
+
+---
+
+## Compatibility
+
+Compatible with:
+
+- diagnostics
+- strict-mode
+- structured-analysis
+
+---
+
+## Observable Effects
+
+Responses contain explicit Hypotheses → Evaluation → Selection structure with ranked alternatives.
+
+---
+
+## Summary
+
+Reason with multiple hypotheses — generate, rank, evaluate, and update based on evidence.

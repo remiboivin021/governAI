@@ -95,6 +95,8 @@ def build_skill(name: str, body: str) -> str:
     has_rules = "Rules" in sections
     has_constraints = "Constraints" in sections
     has_output = "Output Behavior" in sections
+    has_identity = "Identity" in sections
+    has_intent = "Intent" in sections
 
     lines = ["---",
              f"name: {name}",
@@ -109,6 +111,18 @@ def build_skill(name: str, body: str) -> str:
              "",
              "## Instructions",
              ""]
+
+    if has_identity:
+        lines.append("### Identity")
+        lines.append("")
+        lines.append(sections["Identity"].strip())
+        lines.append("")
+
+    if has_intent:
+        lines.append("### Intent")
+        lines.append("")
+        lines.append(sections["Intent"].strip())
+        lines.append("")
 
     if has_rules:
         lines.append("### Rules")

@@ -1,5 +1,13 @@
 # Overlay: diagnostics
 
+## Identity
+
+Structured diagnostic reasoning for root cause analysis and troubleshooting.
+
+## Intent
+
+Enable systematic investigation of failures by separating symptoms from causes, generating hypotheses, and validating before concluding.
+
 ## Rules
 
 The model MUST:
@@ -54,3 +62,36 @@ Tests, checks, or observations needed to confirm/refute hypotheses.
 Most likely explanation based on current evidence.
 
 ---
+
+## Priority
+
+HIGH
+
+---
+
+## Behavioral Impact
+
+Adds diagnostic structure to reasoning, prioritizes evidence over assumptions, adds hypothesis generation before conclusions.
+
+---
+
+## Compatibility
+
+Compatible with:
+
+- strict-mode
+- structured-response
+- validation-required
+- concise-output
+
+---
+
+## Observable Effects
+
+Responses show explicit Observations → Hypotheses → Validation → Root Cause structure.
+
+---
+
+## Summary
+
+Add diagnostic methodology to reasoning — start from facts, generate multiple hypotheses, validate before concluding.
