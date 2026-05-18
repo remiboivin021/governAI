@@ -52,6 +52,13 @@ configs:
 - `id` doit être présent
 - `source.persona` doit référencer un fichier existant
 - `source.overlays` doivent référencer des fichiers existants
-- Références non résolues = `FileNotFoundError` au build
+- `mode` doit être `primary` ou `subagent`
+- `targets` doit contenir au moins une entrée
 - Runtime supporté : `opencode` uniquement
 - Les champs `behavior`, `constraints`, `output` ne sont pas supportés (supprimés en v0.2)
+
+Un validateur automatique est disponible :
+
+```bash
+python3 scripts/validate_catalog.py
+```

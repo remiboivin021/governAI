@@ -24,7 +24,8 @@ Plusieurs overlays peuvent être empilés (appliqués dans l'ordre du catalogue)
 Le compilateur lit chaque overlay avec `compile_overlay()` :
 
 - Trouve les sections `## Rules`, `## Constraints`, `## Output Behavior`
-- Extrait les lignes commençant par `- ` (listes markdown)
+- **Rules / Constraints** : extrait les lignes commençant par `- ` (listes markdown)
+- **Output Behavior** : capture le corps complet (titres `####` + prose)
 - Ignore les séparateurs `---`
 - Fusionne les résultats dans les sections du prompt `=== RULES ===`, `=== CONSTRAINTS ===`, `=== OUTPUT FORMAT ===`
 
