@@ -101,7 +101,7 @@ def flatten_to_opencode_prompt(
     # Output format
     if ir["output_format"]:
         sections.append("=== OUTPUT FORMAT ===")
-        sections.append("\n".join(ir["output_format"]))
+        sections.append("\n\n---\n\n".join(ir["output_format"]))
 
     # Available skills (overlays as skills)
     if overlay_names:
@@ -121,12 +121,16 @@ def flatten_to_opencode_prompt(
 # 4. OVERLAY COMPILER
 # =========================================================
 
-def compile_overlay(raw_text: str) -> Dict[str, List[str]]:
+def compile_overlay(raw_text: str) -> Dict[str, Any]:
     """
     Parse overlay markdown → structured dict.
+
+    Rules and Constraints are returned as lists of bullet items.
+    Output Behavior is returned as a list containing one string
+    (the full section body including headings and prose).
     """
 
-    def extract(section: str) -> List[str]:
+    def extract_items(section: str) -> List[str]:
         marker = f"## {section}"
         if marker not in raw_text:
             return []
@@ -142,8 +146,30 @@ def compile_overlay(raw_text: str) -> Dict[str, List[str]]:
 
         return lines
 
+    def extract_body(section: str) -> str:
+        marker = f"## {section}"
+        if marker not in raw_text:
+            return ""
+
+        import re
+
+        block = raw_text.split(marker, 1)[1]
+        # split only on L2 headings (## ), not L3/L4 (### / ####)
+        parts = re.split(r"\n## (?![#])", block, maxsplit=1)
+        block = parts[0]
+
+        lines = []
+        for line in block.splitlines():
+            stripped = line.strip()
+            if stripped == "---":
+                continue
+            lines.append(line)
+
+        return "\n".join(lines).strip()
+
+    body = extract_body("Output Behavior")
     return {
-        "rules": extract("Rules"),
-        "constraints": extract("Constraints"),
-        "output": extract("Output Behavior"),
+        "rules": extract_items("Rules"),
+        "constraints": extract_items("Constraints"),
+        "output": [body] if body else [],
     }
