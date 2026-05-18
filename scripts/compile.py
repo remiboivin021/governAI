@@ -73,7 +73,9 @@ def build():
         ir = build_ir(persona, overlay_data)
         ir = normalize_ir(ir)
         task_rules = config.get("tasks", [])
-        prompt = flatten_to_opencode_prompt(ir, task_rules=task_rules)
+        prompt = flatten_to_opencode_prompt(
+            ir, task_rules=task_rules, overlay_names=overlays
+        )
 
         # targets (multi-runtime ready but OpenCode only for now)
         targets = config.get("targets", [])
@@ -83,11 +85,16 @@ def build():
         permission = config.get("permission")
         task_budget = config.get("task_budget")
 
+        overlay_skills = [
+            f"overlays/{name}" for name in overlays
+        ]
+
         agent_cfg = {
             "description": f"Generated agent: {agent_id}",
             "mode": mode,
             "model": model,
             "prompt": prompt,
+            "skills": overlay_skills,
             "meta": {
                 "targets": targets
             },

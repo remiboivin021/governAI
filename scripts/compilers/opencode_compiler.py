@@ -60,7 +60,19 @@ def normalize_ir(ir: Dict[str, Any]) -> Dict[str, Any]:
 # 3. FLATTEN TO OPENCODE PROMPT
 # =========================================================
 
-def flatten_to_opencode_prompt(ir: Dict[str, Any], task_rules: List[str] | None = None) -> str:
+SKILL_DESCRIPTIONS = {
+    "diagnostics": "Structured diagnostic method: facts → hypotheses → validation → root cause.",
+    "hypothesis-driven": "Multi-hypothesis reasoning: generate, rank, evaluate, and update competing explanations.",
+    "strict-mode": "Epistemic rigor: separate facts from assumptions, state uncertainty, refuse overconfidence.",
+    "structured-analysis": "Stage-based analysis: frame → decompose → analyze → synthesize → conclude.",
+}
+
+
+def flatten_to_opencode_prompt(
+    ir: Dict[str, Any],
+    task_rules: List[str] | None = None,
+    overlay_names: List[str] | None = None,
+) -> str:
     """
     Convert IR → OpenCode system prompt string.
     """
@@ -90,6 +102,18 @@ def flatten_to_opencode_prompt(ir: Dict[str, Any], task_rules: List[str] | None 
     if ir["output_format"]:
         sections.append("=== OUTPUT FORMAT ===")
         sections.append("\n".join(ir["output_format"]))
+
+    # Available skills (overlays as skills)
+    if overlay_names:
+        skill_lines = []
+        for name in overlay_names:
+            desc = SKILL_DESCRIPTIONS.get(name, name.replace("-", " ").title())
+            skill_lines.append(f"- {name}: {desc}")
+        sections.append("=== AVAILABLE SKILLS ===")
+        sections.append("You have access to the following overlay skills. "
+                        "Use them by loading the corresponding skill file "
+                        "from `.opencode/skills/overlays/<name>/SKILL.md`:")
+        sections.append("\n".join(skill_lines))
 
     return "\n\n".join(sections).strip()
 
