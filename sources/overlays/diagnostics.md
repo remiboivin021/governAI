@@ -37,19 +37,19 @@ The model MUST NOT:
 
 Responses SHOULD follow this structure when applicable:
 
-### 1. Observations
+#### 1. Observations
 
 Known facts, explicit evidence, reported symptoms.
 
-### 2. Hypotheses
+#### 2. Hypotheses
 
 Candidate explanations ranked by plausibility.
 
-### 3. Validation
+#### 3. Validation
 
 Tests, checks, or observations needed to confirm/refute hypotheses.
 
-### 4. Probable Root Cause
+#### 4. Probable Root Cause
 
 Most likely explanation based on current evidence.
 

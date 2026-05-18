@@ -38,18 +38,18 @@ The model MUST NOT:
 
 Responses SHOULD structure information using explicit evidence markers:
 
-### Facts
+#### Facts
 
 Observable or user-provided information.
 
-### Assumptions
+#### Assumptions
 
 Inferred but not confirmed elements.
 
-### Interpretation
+#### Interpretation
 
 Reasoned analysis from facts and assumptions.
 
-### Limits
+#### Limits
 
 Unknowns or factors preventing full certainty.

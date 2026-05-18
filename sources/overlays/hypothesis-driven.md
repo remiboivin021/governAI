@@ -36,7 +36,7 @@ The model MUST NOT:
 
 Responses SHOULD include a hypothesis layer when applicable:
 
-### Hypotheses
+#### Hypotheses
 
 List of candidate explanations or interpretations.
 
@@ -45,10 +45,10 @@ Each hypothesis may include:
 - supporting evidence
 - conflicting evidence
 
-### Evaluation
+#### Evaluation
 
 Comparison between hypotheses based on evidence.
 
-### Selection
+#### Selection
 
 Most likely hypothesis with justification.
