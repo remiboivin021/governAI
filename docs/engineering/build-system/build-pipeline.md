@@ -3,15 +3,18 @@
 ## Pipeline
 
 ```
+scripts/sync_overlays_to_skills.py        # synchro overlays → .opencode/skills/overlays/
+  ↓
 catalog/index.yaml
   → résoudre persona depuis sources/personas/<nom>.md
   → résoudre overlays depuis sources/overlays/<nom>.md
   → construire l'IR (persona + règles + contraintes + sortie)
-  → aplatir en chaîne de prompt
+  → aplatir en chaîne de prompt (inclut la section === AVAILABLE SKILLS ===)
+  → ajouter skills à la config agent
   → écrire dist/opencode.json
 ```
 
-Implémenté dans `scripts/compile.py`.
+Implémenté dans `scripts/compile.py` et `scripts/sync_overlays_to_skills.py`.
 
 ## Étapes
 
@@ -44,17 +47,34 @@ SYSTEM PERSONA:
 ...
 === OUTPUT FORMAT ===
 ...
+=== AVAILABLE SKILLS ===
+...
 ```
 
-### 5. Écriture du JSON
+### 5. Ajout des skills
 
-Sortie dans `dist/opencode.json` avec id, mode, model, prompt, tools, permissions.
+La config agent reçoit un champ `skills` listant les overlays disponibles comme skills OpenCode.
+
+### 6. Écriture du JSON
+
+Sortie dans `dist/opencode.json` avec id, mode, model, prompt, skills, tools, permissions.
+
+## Pre-build
+
+```bash
+python3 scripts/sync_overlays_to_skills.py
+```
+
+Synchronise les overlays de `sources/overlays/` vers `.opencode/skills/overlays/<name>/SKILL.md`.
 
 ## Artefacts de sortie
 
 ```
 dist/
   opencode.json       # Configuration agent OpenCode
+
+.opencode/skills/overlays/
+  <name>/SKILL.md     # Overlays disponibles comme skills
 ```
 
 ## Runtime supporté

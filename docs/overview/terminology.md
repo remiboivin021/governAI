@@ -26,7 +26,7 @@
 | **Primary agent** | Main assistant in a session. Switch via Tab. |
 | **Subagent** | Specialized agent invoked via `@mention` or spawned via Task tool. |
 | **Task tool** | Mechanism for an agent to spawn a child subagent session. |
-| **Skill** | Runtime-loadable behavior packaged as `.opencode/skills/<name>/SKILL.md`. Not yet used by the compiler (v2). |
+| **Skill** | Runtime-loadable behavior packaged as `.opencode/skills/<name>/SKILL.md`. Overlays are synced to skills; the compiler lists available skills in the prompt and config. |
 | **task_budget** | Maximum number of Task tool calls an agent can make (prevents infinite recursion). |
 | **permission.task** | Glob patterns controlling which subagents can be spawned via Task. |
 
@@ -37,6 +37,6 @@
 | `sources/personas/` | Persona definitions (markdown) |
 | `sources/overlays/` | Overlay definitions (markdown) |
 | `catalog/` | Configuration registry |
-| `scripts/` | Python build/export tooling |
+| `scripts/` | Python build/export tooling (`compile.py`, `sync_overlays_to_skills.py`) |
 | `dist/` | Build output artifacts |
 | `.opencode/` | OpenCode runtime config + skills + commands |

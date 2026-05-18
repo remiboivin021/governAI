@@ -14,7 +14,8 @@ sources/
 catalog/
   index.yaml      # registre de configurations
 scripts/
-  compile.py      # build : catalogue → dist/opencode.json
+  compile.py                  # build : catalogue → dist/opencode.json
+  sync_overlays_to_skills.py  # synchro overlays → skills
 dist/
   opencode.json   # configuration OpenCode générée
 ```
@@ -27,7 +28,7 @@ dist/
 
 ### 2. Définir des overlays (optionnel)
 
-`sources/overlays/<nom>.md` — comportements modulaires avec sections `## Rules`, `## Constraints`, `## Output behavior`.
+`sources/overlays/<nom>.md` — comportements modulaires avec sections `## Rules`, `## Constraints`, `## Output Behavior`.
 
 ### 3. Enregistrer dans le catalogue
 
@@ -51,14 +52,21 @@ configs:
       - runtime: opencode
 ```
 
-### 4. Compiler
+### 4. Synchroniser les overlays vers les skills
+
+```bash
+python3 scripts/sync_overlays_to_skills.py
+# → .opencode/skills/overlays/<nom>/SKILL.md
+```
+
+### 5. Compiler
 
 ```bash
 python3 scripts/compile.py
-# → dist/opencode.json
+# → dist/opencode.json (avec skills dans le prompt + config)
 ```
 
-### 5. Utiliser dans OpenCode
+### 6. Utiliser dans OpenCode
 
 ```bash
 opencode --agent mon-agent
@@ -92,7 +100,7 @@ Ou copier `dist/opencode.json` vers `.opencode/opencode.json`.
 ## Ce que l'outil ne fait pas (encore)
 
 - Résolution de conflits entre overlays
-- Overlays en tant que skills
+- Résolution de conflits entre overlays (remplace le simple empilement)
 - Évaluation / benchmarking comportemental
 - Exports multi-runtime (Claude, générique)
 - Builds incrémentaux

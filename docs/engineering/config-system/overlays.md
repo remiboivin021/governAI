@@ -23,12 +23,26 @@ Plusieurs overlays peuvent être empilés (appliqués dans l'ordre du catalogue)
 
 Le compilateur lit chaque overlay avec `compile_overlay()` :
 
-- Trouve les sections `## Rules`, `## Constraints`, `## Output behavior`
+- Trouve les sections `## Rules`, `## Constraints`, `## Output Behavior`
 - Extrait les lignes commençant par `- ` (listes markdown)
 - Ignore les séparateurs `---`
 - Fusionne les résultats dans les sections du prompt `=== RULES ===`, `=== CONSTRAINTS ===`, `=== OUTPUT FORMAT ===`
 
 Les overlays ne sont **pas déconflictés** : ils s'empilent séquentiellement.
+
+## Overlays as Skills
+
+Les overlays sont automatiquement synchronisés vers `.opencode/skills/overlays/<name>/SKILL.md`
+via `scripts/sync_overlays_to_skills.py`.
+
+Le compilateur ajoute une section `=== AVAILABLE SKILLS ===` dans le prompt listant
+les overlays disponibles comme skills, et ajoute un champ `skills` dans la config
+JSON de l'agent.
+
+```bash
+python3 scripts/sync_overlays_to_skills.py   # sync overlays → skills
+python3 scripts/compile.py                   # compile avec skills dans le prompt
+```
 
 ## Overlays existants
 

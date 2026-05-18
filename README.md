@@ -94,8 +94,8 @@ The compilation pipeline is written in Python. No external dependencies beyond P
 1. **Define** a persona (`sources/personas/<name>.md`) — stable cognitive baseline
 2. **Stack** overlays (`sources/overlays/<name>.md`) — behavioral modifiers
 3. **Register** in `catalog/index.yaml` — persona + overlays + model + tools + targets
-4. **Compile** — `scripts/compile.py` merges everything into a single system prompt
-5. **Export** — `scripts/runtime.py` converts to Claude/generic JSON formats
+4. **Sync** overlays to skills — `scripts/sync_overlays_to_skills.py`
+5. **Compile** — `scripts/compile.py` merges everything into a single system prompt, adds available skills
 
 ### Capabilities
 
@@ -104,7 +104,8 @@ The compilation pipeline is written in Python. No external dependencies beyond P
 | Persona + overlay compilation | Deterministic, reproducible builds |
 | Primary / subagent modes | Task delegation with permission + budget |
 | Model-agnostic | Set any model ID in catalog |
-| Prompt sections | System Persona, Rules, Constraints, Task Behavior, Output Format |
+| Prompt sections | System Persona, Rules, Constraints, Task Behavior, Output Format, Available Skills |
+| Overlay-to-skill sync | Automatic sync to `.opencode/skills/overlays/` |
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -120,8 +121,8 @@ The compilation pipeline is written in Python. No external dependencies beyond P
 
 ```bash
 pip install pyyaml
-python3 scripts/compile.py            # → dist/opencode.json
-python3 scripts/runtime.py            # → dist/claude.json, dist/generic.json
+python3 scripts/sync_overlays_to_skills.py   # sync overlays to skills
+python3 scripts/compile.py                   # → dist/opencode.json
 ```
 
 See the [Getting Started guide](docs/guides/getting-started.md) for a full walkthrough.
